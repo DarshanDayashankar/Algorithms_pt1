@@ -3,7 +3,7 @@ const {
   } = require('node:perf_hooks');
 const mergeSort = require('./MultiThreadMergeSort.js');
 
-jest.setTimeout(100000);
+// jest.setTimeout(100000);
 
 const arrays = [
     [],
@@ -23,16 +23,36 @@ const arrays = [
     Array.apply(null, {length: 80000}).map(Function.call, Math.random),
 ]
 
-// const t0 = performance.now();
-// for (array of arrays) 
-//     mergeSort(array).then((arrayd) => {
-//         console.log(arrayd);
-//         const t1 = performance.now();
-//         console.log(t1-t0);
-//     });
+// const sortedTestArrayPromises = [];
 
-for (array of arrays) {
-    test('testing Sort', () => {
-        return mergeSort(array).then((arrayd) => expect(arrayd).toStrictEqual(array.sort()));
+// arrays.forEach((array) => {
+//     sortedTestArrayPromises.push(mergeSort(array));
+// });
+
+// const sortedArrays = [];
+
+// arrays.forEach((array) => {
+//     sortedArrays.push(array.sort());
+// });
+
+for (array of arrays){
+    const t0 = performance.now();
+    mergeSort(array).then((arrayd) => {
+        console.log(arrayd.length);
+        console.log(arrayd === array.sort());
+        const t1 = performance.now();
+        console.log(Math.floor(t1-t0), 'ms');
     });
 }
+
+// for (let i = 0; i < sortedTestArrayPromises.length; i++) {
+//     test('testing Sort', () => {
+//         return sortedTestArrayPromises[i].then(array => expect(array).toStrictEqual(sortedArrays[i]));
+//     });
+// }
+
+// for (array of arrays) {
+//     test('testing Sort', () => {
+//         return mergeSort(array).then((arrayd) => expect(arrayd).toStrictEqual(array.sort()));
+//     });
+// }

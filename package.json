@@ -1,5 +1,14 @@
 {
     "scripts": {
-      "test": "jest --coverage"
+        "test": "jest --coverage"
+    },
+    "devDependencies": {
+        "jest": "^28.1.0"
+    },
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21"
     }
 }
